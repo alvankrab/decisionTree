@@ -1,27 +1,34 @@
-{
+
+var treeData = {
     "label": null,
+    "id": null,
     "question": "What product category?",
     "children": [
       {
         "label": "Clothes",
+        "id": "clothes",
         "question": "What type of clothing?",
         "children": [
           {
             "label": "Jeans",
+            "id": "jeans",
             "question": "Color of jeans?",
             "children": [
               {
                 "label": "Blue",
+                "id": "blue",
                 "question": null,
                 "children": null
               },
               {
                 "label": "Black",
+                "id": "black",
                 "question": null,
                 "children": null
               },
               {
                 "label": "White",
+                "id": "white",
                 "question": null,
                 "children": null
               }
@@ -29,38 +36,46 @@
           },
           {
             "label": "Shirt",
+            "id": "shirt",
             "question": "Type of shirt?",
             "children": [
               {
                 "label": "T-Shirt",
+                "id": "tshirt",
                 "question": "Color of T-shirt?",
                 "children": [
                   {
                     "label": "Red",
+                    "id": "red",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Green",
+                    "id": "green",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Black",
+                    "id": "black",
                     "question": "Logo?",
                     "children": [
                       {
                         "label": "Rock band",
+                        "id": "rockband",
                         "question": null,
                         "children": null
                       },
                       {
                         "label": "TV show",
+                        "id": "tvshow",
                         "question": null,
                         "children": null
                       },
                       {
                         "label": "No logo",
+                        "id": "nologo",
                         "question": null,
                         "children": null
                       }
@@ -68,6 +83,7 @@
                   },
                   {
                     "label": "Orange",
+                    "id": "orange",
                     "question": null,
                     "children": null
                   }
@@ -75,24 +91,29 @@
               },
               {
                 "label": "Hoodie",
+                "id": "hoodie",
                 "question": "Color of hoodie?",
                 "children": [
                   {
                     "label": "Gray",
+                    "id": "gray",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Blue",
+                    "id": "blue",
                     "question": null,
                     "children": [
                       {
                         "label": "TV show",
+                        "id": "tvshow",
                         "question": null,
                         "children": null
                       },
                       {
                         "label": "No logo",
+                        "id": "nologo",
                         "question": null,
                         "children": null
                       }
@@ -100,26 +121,31 @@
                   },
                   {
                     "label": "Green",
+                    "id": "green",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Pink",
+                    "id": "pink",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Brown",
+                    "id": "brown",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Black",
+                    "id": "black",
                     "question": null,
                     "children": null
                   },
                   {
                     "label": "Red",
+                    "id": "red",
                     "question": null,
                     "children": null
                   }
@@ -127,6 +153,7 @@
               },
               {
                 "label": "White",
+                "id": "white",
                 "question": null,
                 "children": null
               }
@@ -134,15 +161,18 @@
           },
           {
             "label": "Hat",
+            "id": "hat",
             "question": "Type of hat?",
             "children": [
               {
                 "label": "Stetson",
+                "id": "stetson",
                 "question": null,
                 "children": null
               },
               {
                 "label": "Sombrero",
+                "id": "sombrero",
                 "question": null,
                 "children": null
               }
@@ -152,34 +182,41 @@
       },
       {
         "label": "Food",
+        "id": "food",
         "question": "Type of food?",
         "children": [
           {
             "label": "Ramen noodles",
+            "id": "ramen",
             "question": null,
             "children": null
           },
           {
             "label": "Soda pop",
-            "question": null,
+            "id": "soda",
+            "question": "What Soda?",
             "children": [
               {
                 "label": "Cola",
+                "id": "cola",
                 "question": null,
                 "children": null
               },
               {
                 "label": "Lemon",
+                "id": "lemon",
                 "question": null,
                 "children": null
               },
               {
                 "label": "Orange",
+                "id": "orange",
                 "question": null,
                 "children": null
               },
               {
                 "label": "Apple",
+                "id": "apple",
                 "question": null,
                 "children": null
               }
@@ -187,10 +224,45 @@
           },
           {
             "label": "Bananas",
+            "id": "bananas",
             "question": null,
             "children": null
           }
         ]
       }
     ]
+  };
+
+$(document).ready(function() { 
+  updateQuestion(treeData, true);
+    
+    $('#restart').click(function () {
+      updateQuestion(treeData, true);
+    });
+});
+
+function getAnswers(children) {
+  if (children) {
+    _.forEach(children, function(data) {
+        $('#app').append('<button id="' + data.id + '">' + data.label + '</button>');
+        $('#' + data.id).click(function () {
+            updateQuestion(data);
+        });
+    });
   }
+  else {
+    $('#app').append('<div>-- END --</div>');
+  }
+}
+
+function updateQuestion(question, isRestarted) {
+    isRestarted = isRestarted || false;
+    if(isRestarted) {
+      $('#app').html('<h2>Start</h2>');
+    }
+    else {
+      $('#app').html('<h2>' + question.label + '</h2>');
+    }
+    $('#app').append('<div class="question">' + question.question + '</div>');
+    getAnswers(question.children);
+}
