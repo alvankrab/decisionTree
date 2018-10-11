@@ -1,0 +1,66 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+}
+
+button {
+    background-color: rgb(0, 0, 0, 0);
+    border: 2px solid #FFF;
+    border-color: #FFF; 
+    color: #FFF;
+    margin-top: 10px;
+    width: 150px;
+}
+
+button:hover, button:focus {
+    color: #000;
+    background-color: #FFF;
+}
+
+.bg-one {
+    background-color: #555;
+}
+
+.bg-two {
+    background-color: #003366;
+}
+
+#app {
+    color: #FFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    height: 400px;
+    padding-top: 50px;
+    margin-top: 100px;
+    position: relative;
+}
+
+#restart {
+    position: absolute;
+    bottom: 10px;
+    width: 50%;
+    right: 10px;
+}
+
+@media screen and (max-width: 425px) {
+    button {
+        width: 100%;
+    }
+    #app {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        padding-top: 0;
+        margin-top: 0;
+        max-width: 100%;
+        box-shadow: 0;        
+    }
+    #restart {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        right: 0;
+    }
+}
