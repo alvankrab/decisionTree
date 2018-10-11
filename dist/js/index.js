@@ -244,25 +244,34 @@ $(document).ready(function() {
 function getAnswers(children) {
   if (children) {
     _.forEach(children, function(data) {
-        $('#app').append('<button id="' + data.id + '">' + data.label + '</button>');
+        $('#question').append('<button id="' + data.id + '">' + data.label + '</button> <br/>');
         $('#' + data.id).click(function () {
+            if ($('#app').hasClass('bg-one')) {
+              $('#app').removeClass('bg-one');
+              $('#app').addClass('bg-two');
+            } else {
+              $('#app').removeClass('bg-two');
+              $('#app').addClass('bg-one');
+            }
             updateQuestion(data);
         });
     });
   }
   else {
-    $('#app').append('<div>-- END --</div>');
+    $('#question').append('<div>-- END --</div>');
   }
 }
 
 function updateQuestion(question, isRestarted) {
     isRestarted = isRestarted || false;
     if(isRestarted) {
-      $('#app').html('<h2>Start</h2>');
+      $('#question').html('<span class="glyphicon glyphicon-asterisk"></span><h2>Start</h2>');
     }
     else {
-      $('#app').html('<h2>' + question.label + '</h2>');
+      $('#question').html('<span class="glyphicon glyphicon-asterisk"></span><h2>' + question.label + '</h2>');
     }
-    $('#app').append('<div class="question">' + question.question + '</div>');
+    if (question.question) {
+      $('#question').append('<div class="question">' + question.question + '</div>');
+    }
     getAnswers(question.children);
 }
