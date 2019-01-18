@@ -1,4 +1,20 @@
 {
+  "name": "Alvan's Own Insta",
+  "short_name": "InstaAlvan",
+  "icons": [
+    {
+      "src": "/src/images/icons/icon_48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "start_url": "/index.html",
+  "scope": ".",
   "display": "standalone",
-  "theme_color": "#008080"
+  "orientation": "portrait-primary",
+  "background_color": "#008080",
+  "theme_color": "",
+  "description": "test only",
+  "dir": "ltr",
+  "lang": "en-US"
 }
