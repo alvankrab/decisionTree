@@ -5,7 +5,7 @@ var treeData = {
     "question": "What product category?",
     "children": [
       {
-        "label": "Clothes",
+        "label": "Damit",
         "id": "clothes",
         "question": "What type of clothing?",
         "children": [
