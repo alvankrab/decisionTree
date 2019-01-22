@@ -239,6 +239,7 @@ $(document).ready(function() {
     $('#restart').click(function () {
       updateQuestion(treeData, true);
     });
+    navigator.serviceWorker.register('sw.js');
 });
 
 function getAnswers(children) {
